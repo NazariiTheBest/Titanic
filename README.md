@@ -1,42 +1,71 @@
-# Titanic
-Survivality prediction of the Titanic passengers
+# Titanic Survival Prediction
 
-Firstly, we need to import required libraries. 
-Set the <b>matplotlib inline</b> for rendering directly in the notebook. And then importing required libraries.
+This project focuses on predicting the survivability of Titanic passengers using machine learning techniques. The dataset is analyzed, preprocessed, and used to train a classification model.
 
-Secondly, import data from the csv file named titanic. Also check the imported dataset
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Dataset Overview](#dataset-overview)
+- [Data Preprocessing](#data-preprocessing)
+- [Model Training](#model-training)
+- [Model Evaluation](#model-evaluation)
+- [Key Observations](#key-observations)
 
-![image](https://github.com/user-attachments/assets/a640853e-635e-4d98-beee-d4f1cefdfc2c)
+## Project Overview
+The goal of this project is to build a predictive model using logistic regression to determine the survival chances of passengers aboard the Titanic based on various features such as age, sex, ticket class, and more.
 
+## Dataset Overview
+The dataset is loaded from a CSV file named `titanic.csv`. It contains information about 891 passengers, structured across 12 columns. Some key statistics about the dataset include:
 
-Thirdly, check dtypes of the DataFrame columns, check the info about DataFrame. As we can see, it contains <b>891</b> rows and <b>12</b> columns.
-As we can see, we have the missing values in the DataFrame. What 
+- **Total rows:** 891
+- **Total columns:** 12
+- **Missing values:** Some columns contain missing values, which are handled during preprocessing.
 
-![image](https://github.com/user-attachments/assets/28cb6380-c4a7-4335-afa4-4f80cce8a540)
+![Dataset Overview](https://github.com/user-attachments/assets/a640853e-635e-4d98-beee-d4f1cefdfc2c)
 
-We can make conclusion, that columns PassengerId and Name has no sense for Machine Learning model. So we'll use DataFrame withoud these columns.
-Also column named Cabin has a lot of missing values, so we'll drop it.
+## Data Preprocessing
+Before training the model, we perform the following data preprocessing steps:
+1. **Dropping Irrelevant Columns:**
+   - `PassengerId` and `Name` are removed as they do not contribute to the model’s predictive capabilities.
+   - `Cabin` is dropped due to a high percentage of missing values.
 
-![image](https://github.com/user-attachments/assets/576b6c76-9cde-43a6-8211-2ae7fd4ea613)
+   ![Dropped Columns](https://github.com/user-attachments/assets/576b6c76-9cde-43a6-8211-2ae7fd4ea613)
 
+2. **Handling Missing Values:**
+   - Missing values in columns such as `Age` are handled appropriately using imputation techniques.
 
-Then we need to split DataFrame into training and testing in the next way: 80% for train, 20% for test
-The next step is to train LogisticRegression model from <b>Scikit-learn</b>
+3. **Feature Engineering:**
+   - Categorical variables such as `Sex` and `Embarked` are encoded for compatibility with machine learning models.
 
-Evaluating model with cross validation:
+## Model Training
+The dataset is split into training (80%) and testing (20%) subsets. A logistic regression model from the **Scikit-learn** library is trained to classify passengers as survivors or non-survivors.
 
-![image](https://github.com/user-attachments/assets/91a8a396-be3b-4405-b4d1-0a014cf24953)
+## Model Evaluation
+To assess the model’s performance, we use the following evaluation metrics:
+1. **Cross-validation:** Ensures model generalizability across different subsets of data.
 
-Plot the confusion matrix:
+   ![Cross-validation](https://github.com/user-attachments/assets/91a8a396-be3b-4405-b4d1-0a014cf24953)
 
-![image](https://github.com/user-attachments/assets/7642e29c-f804-4ffb-bbdf-491a8c23372a)
+2. **Confusion Matrix:** Provides insight into the model’s classification accuracy.
 
-Printing Classification Model Metrics: Precision, Recall, Sensitivity, Specifity
+   ![Confusion Matrix](https://github.com/user-attachments/assets/7642e29c-f804-4ffb-bbdf-491a8c23372a)
 
-![image](https://github.com/user-attachments/assets/0fffcd5e-435e-4755-9913-27e686107f37)
+3. **Classification Metrics:**
+   - **Precision**
+   - **Recall**
+   - **Sensitivity**
+   - **Specificity**
 
-Now I'm interested to check if male and female with same conditions survive (Female, 42y.o., 1 class and Male, 42y.o, 1 class):
+   ![Classification Metrics](https://github.com/user-attachments/assets/0fffcd5e-435e-4755-9913-27e686107f37)
 
-![image](https://github.com/user-attachments/assets/27fe9db8-e940-4888-9fa3-80acdba1a598)
+## Key Observations
+To understand the impact of gender on survival probability, we analyze the survival chances of two hypothetical passengers:
+- **Female, 42 years old, First Class:** Higher survival probability.
+- **Male, 42 years old, First Class:** Lower survival probability.
 
+![Gender Survival Analysis](https://github.com/user-attachments/assets/27fe9db8-e940-4888-9fa3-80acdba1a598)
+
+This analysis highlights the significant impact of gender on survival rates.
+
+---
+This project demonstrates a structured approach to data preprocessing, model training, and evaluation in predictive analytics using Python and Scikit-learn.
 
